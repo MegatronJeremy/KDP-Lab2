@@ -2,6 +2,18 @@ package lab2;
 
 import lab2.net.NetAB;
 
+/**
+ * Example program arguments:
+ * 
+ * localhost 4001 AAAAAAAAAAA BBBBBBBBBBBB "Operativni Sistemi" KDP ...
+ * 
+ * VM arguments: 
+ * 
+ * -Djava.security.policy=java.policy
+ */
+
+
+
 public class Producer {
 
 	public static void main(String[] args) throws Exception {

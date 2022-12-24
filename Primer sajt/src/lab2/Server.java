@@ -11,9 +11,18 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lab2.net.RequestHandler;
-import lab2.net.Service;
 import lab2.rmi.AtomicBroadcastRemote;
 import lab2.rmi.AtomicBroadcastRemoteImpl;
+
+/**
+ * Example program arguments:
+ * 
+ * 4001
+ * 
+ * VM arguments: 
+ * 
+ * -Djava.security.policy=java.policy
+ */
 
 public class Server {
 

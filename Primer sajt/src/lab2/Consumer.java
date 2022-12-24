@@ -2,6 +2,18 @@ package lab2;
 
 import lab2.rmi.RmiAB;
 
+/**
+ * Example program arguments:
+ * 
+ * localhost 4002 AAAAAAAAAAA BBBBBBBBBBBB "Operativni Sistemi" KDP ...
+ * 
+ * **Note: port needs to be server port + 1
+ * 
+ * VM arguments: 
+ * 
+ * -Djava.security.policy=java.policy
+ */
+
 public class Consumer {
 
 	public static void main(String[] args) throws Exception {

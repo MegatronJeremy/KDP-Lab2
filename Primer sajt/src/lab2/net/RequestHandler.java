@@ -1,9 +1,10 @@
-package lab2;
+package lab2.net;
 
 import java.io.IOException;
 import java.net.Socket;
 
-import lab2.net.Service;
+import lab2.Goods;
+import lab2.Server;
 
 /**
  * For communication with producer

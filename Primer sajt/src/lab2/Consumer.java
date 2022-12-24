@@ -22,8 +22,10 @@ public class Consumer {
 				System.out.println(goods.readLine());
 				Thread.sleep(1000 + (int) (Math.random() * 734));
 			}
+
 			System.out.println("Finished reading " + name);
 			System.out.println();
+
 		}
 		ab.close();
 	}

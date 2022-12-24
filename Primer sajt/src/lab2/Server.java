@@ -10,6 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import lab2.net.RequestHandler;
 import lab2.net.Service;
 import lab2.rmi.AtomicBroadcastRemote;
 import lab2.rmi.AtomicBroadcastRemoteImpl;

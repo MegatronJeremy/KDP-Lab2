@@ -27,9 +27,11 @@ public class Producer {
 			}
 
 			goods.save(name);
-
-
+			
 			ab.putGoods(name, goods);
+
+			System.out.println("Finished sending " + name);
+			System.out.println();
 		}
 		ab.close();
 	}

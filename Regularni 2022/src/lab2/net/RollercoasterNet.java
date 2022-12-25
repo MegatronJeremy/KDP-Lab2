@@ -22,9 +22,9 @@ public class RollercoasterNet implements Rollercoaster {
 
 	@Override
 	public boolean close() {
-		try {
-			service.close();
-		} catch (Exception e) {
+		try (Service s = service) {
+
+		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}

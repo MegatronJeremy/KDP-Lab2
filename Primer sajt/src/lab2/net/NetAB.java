@@ -23,9 +23,9 @@ public class NetAB implements AB {
 
 	@Override
 	public boolean close() {
-		try {
-			service.close();
-		} catch (Exception e) {
+		try (Service s = service) {
+
+		} catch (IOException e) {
 			return false;
 		}
 		return true;

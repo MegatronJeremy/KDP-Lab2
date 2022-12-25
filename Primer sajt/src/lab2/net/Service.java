@@ -21,10 +21,9 @@ public class Service implements AutoCloseable {
 	}
 
 	@Override
-	public void close() throws Exception {
-		in.close();
-		out.close();
-		socket.close();
+	public void close() throws IOException {
+		try (Socket s = socket; ObjectOutputStream o = out; ObjectInputStream i = in) {
+		}
 	}
 
 	private final Socket socket;

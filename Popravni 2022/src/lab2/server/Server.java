@@ -50,6 +50,7 @@ public class Server {
 		try (ServerSocket serverSocket = new ServerSocket(port)) {
 			while (true) {
 				Socket client = serverSocket.accept();
+				System.out.println("Accepted " + client.getInetAddress());
 
 				new RequestHandler(this, client).start();
 			}

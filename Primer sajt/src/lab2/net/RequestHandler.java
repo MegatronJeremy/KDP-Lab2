@@ -1,6 +1,5 @@
 package lab2.net;
 
-import java.io.IOException;
 import java.net.Socket;
 
 import lab2.Goods;
@@ -29,8 +28,10 @@ public class RequestHandler extends Thread {
 				System.out.println("Received " + name);
 
 				server.put(name, goods);
+
+				client.send("ACK");
 			}
-		} catch (ClassNotFoundException | IOException e) {
+		} catch (Exception e) {
 			System.out.println("Connection ended");
 		}
 	}

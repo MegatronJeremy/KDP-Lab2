@@ -8,17 +8,13 @@ import lab2.Goods;
 
 public class NetAB implements AB {
 
-	@SuppressWarnings({ "removal", "deprecation" })
-	@Override
 	public boolean init(String host, int port) {
-		if (System.getSecurityManager() == null) {
-			System.setSecurityManager(new SecurityManager());
-		}
-
 		try {
 			Socket socket = new Socket(host, port);
 			service = new Service(socket);
 		} catch (IOException e) {
+			close();
+			e.printStackTrace();
 			return false;
 		}
 
@@ -29,7 +25,7 @@ public class NetAB implements AB {
 	public boolean close() {
 		try {
 			service.close();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;
@@ -41,7 +37,8 @@ public class NetAB implements AB {
 			service.send(name);
 			service.send(goods);
 
-		} catch (IOException e) {
+			service.receive(); // "ACK"
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}

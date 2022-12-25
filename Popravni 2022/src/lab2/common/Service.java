@@ -1,30 +1,32 @@
-package lab2.net;
+package lab2.common;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Service implements AutoCloseable {
+
 	public Service(Socket socket) throws IOException {
 		this.socket = socket;
 		out = new ObjectOutputStream(socket.getOutputStream());
 		in = new ObjectInputStream(socket.getInputStream());
 	}
 
-	public void send(Object obj) throws IOException {
-		out.writeObject(obj);
+	public Object receiveMsg() throws ClassNotFoundException, IOException {
+		return in.readObject();
 	}
 
-	public Object receive() throws ClassNotFoundException, IOException {
-		return in.readObject();
+	public void sendMsg(Object obj) throws IOException {
+		out.writeObject(obj);
 	}
 
 	@Override
 	public void close() throws Exception {
-		in.close();
-		out.close();
 		socket.close();
+		out.close();
+		in.close();
 	}
 
 	private final Socket socket;

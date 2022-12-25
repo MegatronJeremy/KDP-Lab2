@@ -43,7 +43,7 @@ public class RequestHandler extends Thread {
 		service.sendMsg(book);
 	}
 
-	private void write() throws ClassNotFoundException, IOException {
+	private void write() throws IOException, ClassNotFoundException {
 		String name = (String) service.receiveMsg();
 
 		Book book = (Book) service.receiveMsg();

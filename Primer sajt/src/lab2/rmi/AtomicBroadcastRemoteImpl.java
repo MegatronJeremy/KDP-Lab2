@@ -19,7 +19,6 @@ public class AtomicBroadcastRemoteImpl<T, E> implements AtomicBroadcastRemote<T,
 		if ((ab = goodsMap.putIfAbsent(key, new AtomicBroadcastMonitor<>())) == null) {
 			ab = goodsMap.get(key);
 		}
-
 		ab.put(val);
 	}
 

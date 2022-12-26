@@ -1,6 +1,5 @@
 package lab2.server;
 
-import java.io.IOException;
 import java.net.Socket;
 
 import lab2.common.Book;
@@ -15,15 +14,25 @@ public class RequestHandler extends Thread {
 
 	@Override
 	public void run() {
-		try (Service client = new Service(socket)) {
-			service = client;
+		try (Service service = new Service(socket)) {
 			while (true) {
 				String operation = (String) service.receiveMsg();
-
 				if ("read".equals(operation)) {
-					read();
+					String name = (String) service.receiveMsg();
+
+					Book book = server.read(name);
+
+					service.sendMsg(book);
+
 				} else if ("write".equals(operation)) {
-					write();
+					String name = (String) service.receiveMsg();
+
+					Book book = (Book) service.receiveMsg();
+
+					server.write(name, book);
+
+					service.sendMsg("ack");
+
 				} else {
 					String msg = String.format("*** Operacija %s nije podrzana.", operation);
 					throw new UnsupportedOperationException(msg);
@@ -34,26 +43,6 @@ public class RequestHandler extends Thread {
 		}
 
 	}
-
-	private void read() throws IOException, ClassNotFoundException {
-		String name = (String) service.receiveMsg();
-
-		Book book = server.read(name);
-
-		service.sendMsg(book);
-	}
-
-	private void write() throws IOException, ClassNotFoundException {
-		String name = (String) service.receiveMsg();
-
-		Book book = (Book) service.receiveMsg();
-
-		server.write(name, book);
-
-		service.sendMsg("ack");
-	}
-
-	private Service service = null;
 
 	private final Server server;
 	private final Socket socket;

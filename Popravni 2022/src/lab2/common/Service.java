@@ -9,8 +9,13 @@ public class Service implements AutoCloseable {
 
 	public Service(Socket socket) throws IOException {
 		this.socket = socket;
-		out = new ObjectOutputStream(socket.getOutputStream());
-		in = new ObjectInputStream(socket.getInputStream());
+		try {
+			out = new ObjectOutputStream(socket.getOutputStream());
+			in = new ObjectInputStream(socket.getInputStream());
+		} catch (IOException e) {
+			close();
+			throw e;
+		}
 	}
 
 	public Object receiveMsg() throws ClassNotFoundException, IOException {
@@ -23,7 +28,7 @@ public class Service implements AutoCloseable {
 
 	@Override
 	public void close() throws IOException {
-		try (Socket s = socket; ObjectOutputStream o = out; ObjectInputStream i = in) {
+		try (socket; in; out) {
 		}
 	}
 

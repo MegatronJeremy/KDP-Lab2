@@ -11,10 +11,10 @@ public class NetRW implements RW {
 
 	public boolean init(String host, int port) {
 		try {
-			service = new Service(new Socket(host, port));
+			Socket socket = new Socket(host, port);
+			service = new Service(socket);
 		} catch (IOException e) {
 			e.printStackTrace();
-			close();
 			return false;
 		}
 
@@ -23,8 +23,8 @@ public class NetRW implements RW {
 
 	@Override
 	public boolean close() {
-		try (Service s = service) {
-
+		try {
+			service.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
